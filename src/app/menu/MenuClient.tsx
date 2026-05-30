@@ -1,43 +1,57 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, Flame } from "lucide-react";
+import { ShoppingBag, Flame, Leaf } from "lucide-react";
 import { MENU_CATEGORIES, MENU_ITEMS } from "@/lib/data";
-import SectionHeading from "@/components/SectionHeading";
 import MarqueeBanner from "@/components/MarqueeBanner";
+import ImageWithFallback from "@/components/ImageWithFallback";
 import { BRAND } from "@/lib/data";
 
-export default function MenuClient() {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+const BADGE_STYLE: Record<string, string> = {
+  "Best Seller": "bg-[#D4891A] text-[#1C1008]",
+  "Popular":     "bg-[#8B1A1A] text-[#F4E4C1]",
+  "New":         "bg-[#003087] text-white",
+  "Vegetarian":  "bg-emerald-700 text-white",
+};
 
-  const filtered = activeCategory === "All"
-    ? MENU_ITEMS
-    : MENU_ITEMS.filter((i) => i.category === activeCategory);
+const CATEGORY_EMOJI: Record<string, string> = {
+  All:        "🍽️",
+  Baleadas:   "🫓",
+  Pastelitos: "🥟",
+  Tajadas:    "🍌",
+  Plates:     "🍛",
+  Sides:      "🌽",
+  Drinks:     "🥤",
+};
+
+export default function MenuClient() {
+  const [active, setActive] = useState<string>("All");
+
+  const filtered = active === "All" ? MENU_ITEMS : MENU_ITEMS.filter((i) => i.category === active);
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 bg-[#1C1008] min-h-screen">
+
       {/* Hero */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-b from-[#0f0805] to-[#1a0e08]">
-        <div className="absolute inset-0 texture-overlay" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#7c1d27/20_0%,_transparent_70%)]" />
+      <section className="relative py-24 overflow-hidden bg-[#2A1A0E] texture-grain">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,_rgba(139,26,26,0.3)_0%,_transparent_70%)]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <span className="text-[#e8a020] text-xs font-bold tracking-[0.25em] uppercase mb-4 block">Catrachos Antojitos</span>
-            <h1 className="text-5xl md:text-6xl font-bold text-[#f5e6c8] mb-5">
-              Our <span className="gradient-text">Menu</span>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <span className="text-[#D4891A] text-xs font-bold tracking-[0.3em] uppercase mb-5 block">Catrachos Antojitos</span>
+            <h1 className="font-display text-[#F4E4C1] text-6xl md:text-8xl leading-none mb-4">
+              THE MENU
             </h1>
-            <p className="text-[#f5e6c8]/60 text-lg max-w-xl mx-auto mb-8">
-              Traditional Honduran street food made fresh daily — from hand-pressed baleadas to crispy tajadas loaded with flavor.
+            <p className="text-[#F4E4C1]/55 text-base sm:text-lg max-w-md mx-auto mb-8">
+              Everything made fresh. Every order made with love. The flavors of Honduras — right here in Las Vegas.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#e8a020] to-[#f5c842] text-[#1a0e08] font-bold hover:scale-105 transition-transform">
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#D4891A] text-[#1C1008] font-bold text-sm tracking-wide hover:bg-[#F0A830] transition-colors">
                 <ShoppingBag className="w-4 h-4" />Order on Uber Eats
               </a>
               <a href={BRAND.doorDash} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#7c1d27] text-white font-bold hover:bg-[#9e1f1f] transition-colors">
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#8B1A1A] text-[#F4E4C1] font-bold text-sm tracking-wide hover:bg-[#B52020] transition-colors">
                 <ShoppingBag className="w-4 h-4" />Order on DoorDash
               </a>
             </div>
@@ -47,22 +61,24 @@ export default function MenuClient() {
 
       <MarqueeBanner />
 
-      {/* Menu Content */}
-      <section className="py-16 bg-[#1a0e08]">
+      {/* Menu */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
           {/* Category tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-2 mb-12 scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-12">
             {MENU_CATEGORIES.map((cat) => (
               <motion.button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => setActive(cat)}
                 whileTap={{ scale: 0.95 }}
-                className={`px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${
-                  activeCategory === cat
-                    ? "bg-gradient-to-r from-[#7c1d27] to-[#9e1f1f] text-white shadow-lg"
-                    : "bg-[#0f0805] text-[#f5e6c8]/60 hover:text-[#e8a020] border border-[#7c1d27]/20"
+                className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all shrink-0 ${
+                  active === cat
+                    ? "bg-[#8B1A1A] text-[#F4E4C1] shadow-lg shadow-[#8B1A1A]/30"
+                    : "bg-[#2A1A0E] text-[#F4E4C1]/60 hover:text-[#F4E4C1] border border-[#F4E4C1]/8"
                 }`}
               >
+                <span>{CATEGORY_EMOJI[cat]}</span>
                 {cat}
               </motion.button>
             ))}
@@ -71,77 +87,104 @@ export default function MenuClient() {
           {/* Grid */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 16 }}
+              key={active}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
             >
               {filtered.map((item, i) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.04 }}
-                  className="card-lift group rounded-2xl overflow-hidden bg-[#0f0805] border border-[#7c1d27]/20 flex flex-col"
+                  transition={{ delay: i * 0.04, duration: 0.3 }}
+                  whileHover={{ y: -6 }}
+                  className="group rounded-2xl overflow-hidden bg-[#2A1A0E] border border-[#F4E4C1]/6 flex flex-col shadow-lg"
                 >
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
+                  {/* Image */}
+                  <div className="relative h-52 shrink-0 overflow-hidden">
+                    <ImageWithFallback
                       src={item.image}
                       alt={item.name}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-105 transition-transform duration-600"
+                      fallbackEmoji={item.fallbackEmoji}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f0805]/70 to-transparent" />
-                    <div className="absolute top-3 left-3 flex flex-wrap gap-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1C1008]/80 via-[#1C1008]/20 to-transparent" />
+
+                    {/* Badges top-left */}
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                       {item.badges.map((b) => (
-                        <span key={b} className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
-                          b === "Best Seller" ? "bg-[#e8a020] text-[#1a0e08]" :
-                          b === "Popular" ? "bg-[#7c1d27] text-white" :
-                          b === "New" ? "bg-[#0038a8] text-white" :
-                          b === "Vegetarian" ? "bg-green-700 text-white" :
-                          "bg-[#2c1810] text-[#f5e6c8]"
-                        }`}>{b}</span>
+                        <span key={b} className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide ${BADGE_STYLE[b] ?? "bg-[#2A1A0E] text-[#F4E4C1]"}`}>
+                          {b}
+                        </span>
                       ))}
+                    </div>
+
+                    {/* Tags top-right */}
+                    <div className="absolute top-3 right-3 flex flex-col gap-1.5 items-end">
                       {item.spicy && (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-600 text-white flex items-center gap-0.5">
-                          <Flame className="w-2.5 h-2.5" /> Spicy
+                        <span title="Spicy" className="w-7 h-7 rounded-full bg-red-600/90 flex items-center justify-center">
+                          <Flame className="w-3.5 h-3.5 text-white" />
+                        </span>
+                      )}
+                      {item.vegetarian && (
+                        <span title="Vegetarian" className="w-7 h-7 rounded-full bg-emerald-700/90 flex items-center justify-center">
+                          <Leaf className="w-3.5 h-3.5 text-white" />
                         </span>
                       )}
                     </div>
-                    <span className="absolute bottom-3 right-3 bg-[#0f0805]/80 backdrop-blur px-2.5 py-1 rounded-lg text-[#e8a020] font-bold text-sm">
-                      {item.price}
+
+                    {/* Category pill bottom */}
+                    <span className="absolute bottom-3 left-3 px-2.5 py-0.5 rounded-full bg-[#1C1008]/70 backdrop-blur-sm text-[#F4E4C1]/60 text-[10px] font-bold uppercase tracking-wider">
+                      {item.category}
                     </span>
                   </div>
+
+                  {/* Content */}
                   <div className="p-4 flex-1 flex flex-col">
-                    <h3 className="text-[#f5e6c8] font-bold text-sm mb-1.5">{item.name}</h3>
-                    <p className="text-[#f5e6c8]/50 text-xs leading-relaxed flex-1">{item.description}</p>
+                    <h3 className="text-[#F4E4C1] font-bold text-sm mb-2 leading-snug">{item.name}</h3>
+                    <p className="text-[#F4E4C1]/45 text-xs leading-relaxed flex-1 line-clamp-3">{item.description}</p>
                     <a
                       href={BRAND.uberEats}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-4 w-full py-2.5 rounded-lg bg-[#7c1d27]/30 hover:bg-[#7c1d27] text-[#f5e6c8] text-xs font-bold text-center transition-colors border border-[#7c1d27]/30"
+                      className="mt-4 w-full py-2.5 rounded-xl bg-[#D4891A]/12 hover:bg-[#D4891A] text-[#D4891A] hover:text-[#1C1008] text-xs font-bold text-center transition-all border border-[#D4891A]/25 hover:border-transparent"
                     >
-                      Order This
+                      Add to Order ↗
                     </a>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
           </AnimatePresence>
+
+          {/* Legend */}
+          <div className="flex flex-wrap gap-4 mt-10 pt-8 border-t border-[#F4E4C1]/6">
+            <span className="flex items-center gap-1.5 text-[#F4E4C1]/40 text-xs">
+              <Flame className="w-3.5 h-3.5 text-red-500" /> Spicy
+            </span>
+            <span className="flex items-center gap-1.5 text-[#F4E4C1]/40 text-xs">
+              <Leaf className="w-3.5 h-3.5 text-emerald-500" /> Vegetarian
+            </span>
+            <span className="flex items-center gap-1.5 text-[#F4E4C1]/40 text-xs">
+              <span className="px-2 py-0.5 rounded-full bg-[#D4891A] text-[#1C1008] text-[9px] font-bold">Best Seller</span> Customer Favorite
+            </span>
+          </div>
         </div>
       </section>
 
       {/* Catering CTA */}
-      <section className="py-16 bg-[#0f0805]">
+      <section className="bg-[#8B1A1A] py-16 texture-grain">
         <div className="max-w-xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-[#f5e6c8] mb-4">Want the Whole Menu at Your Event?</h2>
-          <p className="text-[#f5e6c8]/60 mb-6">We bring the full Catrachos Antojitos experience to your venue.</p>
+          <h2 className="font-display text-[#F4E4C1] text-4xl md:text-5xl mb-4">WANT IT ALL AT YOUR EVENT?</h2>
+          <p className="text-[#F4E4C1]/65 text-base mb-7">We bring the full Catrachos Antojitos truck to your venue.</p>
           <Link href="/catering"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#e8a020] to-[#f5c842] text-[#1a0e08] font-bold hover:scale-105 transition-transform">
-            Book Catering
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#D4891A] text-[#1C1008] font-bold text-sm hover:bg-[#F0A830] transition-colors">
+            Book Catering Now
           </Link>
         </div>
       </section>

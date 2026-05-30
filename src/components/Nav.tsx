@@ -3,64 +3,61 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Flame } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { BRAND } from "@/lib/data";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/menu", label: "Menu" },
-  { href: "/locations", label: "Locations" },
-  { href: "/catering", label: "Catering" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/menu",      label: "Menu" },
+  { href: "/locations", label: "Find Us" },
+  { href: "/catering",  label: "Catering" },
+  { href: "/about",     label: "Our Story" },
+  { href: "/contact",   label: "Contact" },
 ];
 
 export default function Nav() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen]       = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    const h = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", h, { passive: true });
+    return () => window.removeEventListener("scroll", h);
   }, []);
 
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#1a0e08]/95 backdrop-blur-md shadow-lg shadow-black/30 border-b border-[#7c1d27]/30"
-          : "bg-transparent"
-      }`}
-    >
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+      scrolled ? "bg-[#1C1008]/96 backdrop-blur-lg border-b border-[#F4E4C1]/5 shadow-xl shadow-black/40" : "bg-transparent"
+    }`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#e8a020] to-[#7c1d27] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-            <Flame className="w-5 h-5 text-white" />
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <div className="relative">
+            <div className="w-10 h-10 rounded-full bg-[#8B1A1A] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+              <span className="font-display text-[#F0A830] text-lg leading-none">CA</span>
+            </div>
+            <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#D4891A] border-2 border-[#1C1008]" />
           </div>
-          <div className="leading-tight">
-            <span className="block text-[#f5e6c8] font-bold text-sm tracking-wide">CATRACHOS</span>
-            <span className="block text-[#e8a020] text-[10px] tracking-[0.2em] uppercase font-medium">Antojitos</span>
+          <div className="leading-none">
+            <span className="block font-display text-[#F4E4C1] text-lg tracking-[0.12em]">CATRACHOS</span>
+            <span className="block text-[#D4891A] text-[9px] tracking-[0.35em] uppercase font-medium">Antojitos · Las Vegas</span>
           </div>
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-1">
+        <ul className="hidden md:flex items-center gap-0.5">
           {links.map((l) => (
             <li key={l.href}>
-              <Link
-                href={l.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  pathname === l.href
-                    ? "text-[#e8a020] bg-[#e8a020]/10"
-                    : "text-[#f5e6c8]/80 hover:text-[#e8a020] hover:bg-white/5"
-                }`}
-              >
+              <Link href={l.href} className={`relative px-4 py-2 text-sm font-medium tracking-wide transition-colors ${
+                pathname === l.href ? "text-[#F0A830]" : "text-[#F4E4C1]/70 hover:text-[#F4E4C1]"
+              }`}>
                 {l.label}
+                {pathname === l.href && (
+                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-lg bg-[#8B1A1A]/25 -z-10" />
+                )}
               </Link>
             </li>
           ))}
@@ -68,27 +65,18 @@ export default function Nav() {
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href={BRAND.uberEats}
-            target="_blank"
-            className="text-sm font-medium text-[#f5e6c8]/70 hover:text-[#e8a020] transition-colors"
-          >
-            Uber Eats
-          </Link>
-          <Link
-            href="/catering"
-            className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#7c1d27] to-[#9e1f1f] text-white text-sm font-bold hover:from-[#9e1f1f] hover:to-[#c62c2c] transition-all glow-burgundy"
-          >
+          <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
+            className="px-4 py-2 text-sm font-bold text-[#F4E4C1]/70 hover:text-[#F0A830] transition-colors tracking-wide">
+            Order ↗
+          </a>
+          <Link href="/catering"
+            className="px-5 py-2.5 rounded-lg bg-[#8B1A1A] text-[#F4E4C1] text-sm font-bold tracking-wide hover:bg-[#B52020] transition-colors border border-[#F0A830]/20">
             Book Catering
           </Link>
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-[#f5e6c8] p-2 rounded-lg hover:bg-white/5 transition-colors"
-          aria-label="Toggle menu"
-        >
+        {/* Mobile toggle */}
+        <button onClick={() => setOpen(!open)} className="md:hidden text-[#F4E4C1] p-2" aria-label="Menu">
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </nav>
@@ -97,35 +85,32 @@ export default function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#1a0e08]/98 backdrop-blur-md border-t border-[#7c1d27]/30"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-[#1C1008]/98 backdrop-blur-xl border-t border-[#F4E4C1]/5"
           >
-            <ul className="px-4 py-4 space-y-1">
+            <div className="px-4 py-5 space-y-1">
               {links.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                      pathname === l.href
-                        ? "text-[#e8a020] bg-[#e8a020]/10"
-                        : "text-[#f5e6c8]/80 hover:text-[#e8a020] hover:bg-white/5"
-                    }`}
-                  >
-                    {l.label}
-                  </Link>
-                </li>
+                <Link key={l.href} href={l.href}
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                    pathname === l.href ? "text-[#F0A830] bg-[#8B1A1A]/20" : "text-[#F4E4C1]/70 hover:text-[#F4E4C1]"
+                  }`}>
+                  {l.label}
+                </Link>
               ))}
-              <li className="pt-2">
-                <Link
-                  href="/catering"
-                  className="block px-4 py-3 rounded-lg bg-gradient-to-r from-[#7c1d27] to-[#9e1f1f] text-white text-sm font-bold text-center"
-                >
+              <div className="pt-3 flex gap-2">
+                <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 py-3 rounded-xl bg-[#2A1A0E] border border-[#F4E4C1]/10 text-[#F4E4C1] text-sm font-bold text-center">
+                  Order Online
+                </a>
+                <Link href="/catering"
+                  className="flex-1 py-3 rounded-xl bg-[#8B1A1A] text-[#F4E4C1] text-sm font-bold text-center">
                   Book Catering
                 </Link>
-              </li>
-            </ul>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

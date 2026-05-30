@@ -1,27 +1,62 @@
 "use client";
 import Link from "next/link";
-import { ShoppingBag, CalendarDays } from "lucide-react";
+import { ShoppingBag, MapPin, CalendarDays, Phone } from "lucide-react";
 import { BRAND } from "@/lib/data";
+
+const buttons = [
+  {
+    label: "Order",
+    icon: ShoppingBag,
+    href: BRAND.uberEats,
+    external: true,
+    bg: "bg-[#D4891A]",
+    text: "text-[#1C1008]",
+  },
+  {
+    label: "Find Us",
+    icon: MapPin,
+    href: "/locations",
+    external: false,
+    bg: "bg-[#2A1A0E]",
+    text: "text-[#F4E4C1]",
+  },
+  {
+    label: "Catering",
+    icon: CalendarDays,
+    href: "/catering",
+    external: false,
+    bg: "bg-[#8B1A1A]",
+    text: "text-[#F4E4C1]",
+  },
+  {
+    label: "Call",
+    icon: Phone,
+    href: `tel:${BRAND.phone}`,
+    external: true,
+    bg: "bg-[#2A1A0E]",
+    text: "text-[#F4E4C1]",
+  },
+];
 
 export default function MobileStickyCTA() {
   return (
-    <div className="mobile-sticky-cta md:hidden">
-      <a
-        href={BRAND.uberEats}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg bg-white/10 text-white text-sm font-bold border border-white/20"
-      >
-        <ShoppingBag className="w-4 h-4" />
-        Order Now
-      </a>
-      <Link
-        href="/catering"
-        className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg bg-[#e8a020] text-[#1a0e08] text-sm font-bold"
-      >
-        <CalendarDays className="w-4 h-4" />
-        Book Catering
-      </Link>
+    <div className="mobile-cta-bar">
+      {buttons.map((b) => {
+        const Icon = b.icon;
+        const className = `flex flex-col items-center justify-center gap-1 py-3 ${b.bg} ${b.text} text-[10px] font-bold tracking-wide uppercase active:opacity-80 transition-opacity`;
+        return b.external ? (
+          <a key={b.label} href={b.href} target={b.href.startsWith("http") ? "_blank" : undefined}
+            rel="noopener noreferrer" className={className}>
+            <Icon className="w-4 h-4" />
+            {b.label}
+          </a>
+        ) : (
+          <Link key={b.label} href={b.href} className={className}>
+            <Icon className="w-4 h-4" />
+            {b.label}
+          </Link>
+        );
+      })}
     </div>
   );
 }

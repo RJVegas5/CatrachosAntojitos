@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -8,14 +9,14 @@ import { BRAND } from "@/lib/data";
 
 const links = [
   { href: "/menu",      label: "Menu" },
-  { href: "/locations", label: "Find Us" },
+  { href: "/locations", label: "Find The Truck", highlight: true },
   { href: "/catering",  label: "Catering" },
   { href: "/about",     label: "Our Story" },
   { href: "/contact",   label: "Contact" },
 ];
 
 export default function Nav() {
-  const [open, setOpen]       = useState(false);
+  const [open, setOpen]         = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -28,22 +29,29 @@ export default function Nav() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-      scrolled ? "bg-[#1C1008]/96 backdrop-blur-lg border-b border-[#F4E4C1]/5 shadow-xl shadow-black/40" : "bg-transparent"
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled
+        ? "bg-[#1C1008]/96 backdrop-blur-lg border-b border-[#F4E4C1]/5 shadow-xl shadow-black/40"
+        : "bg-transparent"
     }`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-[#8B1A1A] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <span className="font-display text-[#F0A830] text-lg leading-none">CA</span>
-            </div>
-            <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#D4891A] border-2 border-[#1C1008]" />
+          <div className="relative w-10 h-10 group-hover:scale-105 transition-transform">
+            <Image
+              src="/logo-parrot.png"
+              alt="Catrachos Antojitos"
+              fill
+              className="object-contain drop-shadow-lg"
+              sizes="40px"
+            />
           </div>
           <div className="leading-none">
             <span className="block font-display text-[#F4E4C1] text-lg tracking-[0.12em]">CATRACHOS</span>
-            <span className="block text-[#D4891A] text-[9px] tracking-[0.35em] uppercase font-medium">Antojitos · Las Vegas</span>
+            <span className="block text-[#D4891A] text-[9px] tracking-[0.35em] uppercase font-medium">
+              Antojitos · Las Vegas
+            </span>
           </div>
         </Link>
 
@@ -51,12 +59,17 @@ export default function Nav() {
         <ul className="hidden md:flex items-center gap-0.5">
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className={`relative px-4 py-2 text-sm font-medium tracking-wide transition-colors ${
-                pathname === l.href ? "text-[#F0A830]" : "text-[#F4E4C1]/70 hover:text-[#F4E4C1]"
+              <Link href={l.href} className={`relative px-4 py-2 text-sm font-medium tracking-wide transition-colors rounded-lg ${
+                pathname === l.href
+                  ? "text-[#F0A830]"
+                  : l.highlight
+                  ? "text-[#D4891A] hover:text-[#F0A830]"
+                  : "text-[#F4E4C1]/70 hover:text-[#F4E4C1]"
               }`}>
                 {l.label}
                 {pathname === l.href && (
-                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-lg bg-[#8B1A1A]/25 -z-10" />
+                  <motion.span layoutId="nav-pill"
+                    className="absolute inset-0 rounded-lg bg-[#8B1A1A]/25 -z-10" />
                 )}
               </Link>
             </li>
@@ -66,11 +79,12 @@ export default function Nav() {
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
           <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
-            className="px-4 py-2 text-sm font-bold text-[#F4E4C1]/70 hover:text-[#F0A830] transition-colors tracking-wide">
+            className="px-4 py-2 text-sm font-bold text-[#F4E4C1]/60 hover:text-[#F0A830] transition-colors">
             Order ↗
           </a>
           <Link href="/catering"
-            className="px-5 py-2.5 rounded-lg bg-[#8B1A1A] text-[#F4E4C1] text-sm font-bold tracking-wide hover:bg-[#B52020] transition-colors border border-[#F0A830]/20">
+            className="px-5 py-2.5 rounded-lg bg-[#8B1A1A] text-[#F4E4C1] text-sm font-bold
+              hover:bg-[#B52020] transition-colors border border-[#F0A830]/15">
             Book Catering
           </Link>
         </div>
@@ -84,25 +98,26 @@ export default function Nav() {
       {/* Mobile drawer */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-[#1C1008]/98 backdrop-blur-xl border-t border-[#F4E4C1]/5"
-          >
+          <motion.div initial={{ opacity:0, y:-8 }} animate={{ opacity:1, y:0 }}
+            exit={{ opacity:0, y:-8 }} transition={{ duration:0.2 }}
+            className="md:hidden bg-[#1C1008]/98 backdrop-blur-xl border-t border-[#F4E4C1]/5">
             <div className="px-4 py-5 space-y-1">
               {links.map((l) => (
                 <Link key={l.href} href={l.href}
                   className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                    pathname === l.href ? "text-[#F0A830] bg-[#8B1A1A]/20" : "text-[#F4E4C1]/70 hover:text-[#F4E4C1]"
+                    pathname === l.href
+                      ? "text-[#F0A830] bg-[#8B1A1A]/20"
+                      : l.highlight
+                      ? "text-[#D4891A]"
+                      : "text-[#F4E4C1]/70 hover:text-[#F4E4C1]"
                   }`}>
                   {l.label}
                 </Link>
               ))}
               <div className="pt-3 flex gap-2">
                 <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 py-3 rounded-xl bg-[#2A1A0E] border border-[#F4E4C1]/10 text-[#F4E4C1] text-sm font-bold text-center">
+                  className="flex-1 py-3 rounded-xl bg-[#2A1A0E] border border-[#F4E4C1]/10
+                    text-[#F4E4C1] text-sm font-bold text-center">
                   Order Online
                 </a>
                 <Link href="/catering"

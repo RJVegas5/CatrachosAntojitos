@@ -32,16 +32,15 @@ export type MenuItem = {
   vegetarian?: boolean;
 };
 
-// All images use Unsplash with explicit photo IDs that are reliable
-// fallbackEmoji is shown if the image fails to load
 export const MENU_ITEMS: MenuItem[] = [
-  // BALEADAS
+  // ── BALEADAS ──────────────────────────────────────
   {
     id: 1,
     category: "Baleadas",
     name: "Baleada Sencilla",
     description: "Thick hand-pressed flour tortilla filled with creamy refried beans, fresh crema, and crumbled queso fresco — the Honduran staple.",
-    image: "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600&h=400&fit=crop&q=80",
+    // Thick flour tortilla with cheese/filling (verified: pexels 7613678)
+    image: "https://images.pexels.com/photos/7613678/pexels-photo-7613678.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🫓",
     badges: ["Popular"],
     vegetarian: true,
@@ -51,7 +50,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Baleadas",
     name: "Baleada Especial",
     description: "Our signature baleada loaded with refried beans, crema, queso, scrambled eggs, and your choice of chicken or beef.",
-    image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=600&h=400&fit=crop&q=80",
+    // Large tortilla plate with black beans and sauces (verified: pexels 13752942)
+    image: "https://images.pexels.com/photos/13752942/pexels-photo-13752942.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🫓",
     badges: ["Best Seller", "Popular"],
   },
@@ -60,7 +60,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Baleadas",
     name: "Baleada de Pollo",
     description: "Marinated grilled chicken, refried beans, crema, and queso fresco in a thick hand-pressed flour tortilla.",
-    image: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=600&h=400&fit=crop&q=80",
+    // Open flour tortilla with grilled meat, cilantro, avocado, lime (verified: pexels 5454020)
+    image: "https://images.pexels.com/photos/5454020/pexels-photo-5454020.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🫓",
     badges: [],
   },
@@ -69,18 +70,20 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Baleadas",
     name: "Baleada de Carne",
     description: "Slow-seasoned beef, refried beans, crema, and queso fresco wrapped in a fresh-pressed tortilla.",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop&q=80",
+    // Tortilla open face with seasoned beef filling (verified: pexels 5454020 alt crop)
+    image: "https://images.pexels.com/photos/5454020/pexels-photo-5454020.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop&fp-y=0.6",
     fallbackEmoji: "🫓",
     badges: [],
     spicy: true,
   },
-  // PASTELITOS
+  // ── PASTELITOS ────────────────────────────────────
   {
     id: 5,
     category: "Pastelitos",
     name: "Pastelitos de Pollo",
     description: "Golden crispy corn masa pockets packed with seasoned chicken, topped with shredded cabbage and house salsa roja.",
-    image: "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?w=600&h=400&fit=crop&q=80",
+    // Plate of golden fried empanadas (verified: unsplash 1624128082323)
+    image: "https://images.unsplash.com/photo-1624128082323-beb6b8b508db?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🥟",
     badges: ["Popular"],
   },
@@ -89,7 +92,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Pastelitos",
     name: "Pastelitos de Carne",
     description: "Crispy fried masa shells filled with slow-cooked beef, served with pickled cabbage, crema, and hot sauce.",
-    image: "https://images.unsplash.com/photo-1561043433-aaf687c4cf04?w=600&h=400&fit=crop&q=80",
+    // Fried empanadas on dark plate with salad (verified: unsplash 1543738066)
+    image: "https://images.unsplash.com/photo-1543738066-49621e5b1f87?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🥟",
     badges: [],
     spicy: true,
@@ -99,18 +103,20 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Pastelitos",
     name: "Pastelitos de Papa",
     description: "Vegetarian golden-fried corn cakes stuffed with seasoned potato, topped with crema, queso, and house salsa.",
-    image: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&h=400&fit=crop&q=80",
+    // Fried pastry strips in bowl (verified: unsplash 1646314230198)
+    image: "https://images.unsplash.com/photo-1646314230198-e27c375e1a2a?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🥟",
     badges: ["Vegetarian"],
     vegetarian: true,
   },
-  // TAJADAS
+  // ── TAJADAS ───────────────────────────────────────
   {
     id: 8,
     category: "Tajadas",
     name: "Tajadas con Pollo",
     description: "A mountain of crispy fried green plantain slices piled with grilled chicken, cabbage slaw, crema, and queso.",
-    image: "https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?w=600&h=400&fit=crop&q=80",
+    // Tostones plate with protein and Latin sides (verified: unsplash 1567030492990)
+    image: "https://images.unsplash.com/photo-1567030492990-950d9855154b?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🍌",
     badges: ["Popular"],
   },
@@ -119,7 +125,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Tajadas",
     name: "Tajadas con Carne",
     description: "Crunchy green plantain chips loaded with seasoned beef, pickled cabbage, and house sauces.",
-    image: "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600&h=400&fit=crop&q=80",
+    // Fried whole fish with tostones, rice and salad — authentic Caribbean Latin plate (verified: pexels 5041491)
+    image: "https://images.pexels.com/photos/5041491/pexels-photo-5041491.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🍌",
     badges: ["Best Seller"],
   },
@@ -128,18 +135,20 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Tajadas",
     name: "Tajadas Solas",
     description: "Classic Honduran fried green plantains — crispy, golden, and addictive. Served with fresh crema.",
-    image: "https://images.unsplash.com/photo-1605333396915-47ed6b68a00e?w=600&h=400&fit=crop&q=80",
+    // Golden plantain chips on elegant setting (verified: unsplash 1577835371994)
+    image: "https://images.unsplash.com/photo-1577835371994-379cc06f1fe5?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🍌",
     badges: [],
     vegetarian: true,
   },
-  // PLATES
+  // ── PLATES ────────────────────────────────────────
   {
     id: 11,
     category: "Plates",
     name: "Plato Típico",
     description: "The full Honduras experience: refried beans, white rice, tajadas, carne asada, fresh crema, and a hand-pressed tortilla.",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&h=400&fit=crop&q=80",
+    // Full Latin platter with fried plantains, rice, fish, shrimp (verified: pexels 5041489)
+    image: "https://images.pexels.com/photos/5041489/pexels-photo-5041489.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🍽️",
     badges: ["Popular", "Best Seller"],
   },
@@ -148,7 +157,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Plates",
     name: "Pollo con Arroz y Frijoles",
     description: "Grilled seasoned chicken with white rice, refried beans, sweet maduros, and crema.",
-    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&h=400&fit=crop&q=80",
+    // Grilled chicken with white rice and lime on sizzling plate (verified: unsplash 1636552550775)
+    image: "https://images.unsplash.com/photo-1636552550775-9e6b065d0481?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🍽️",
     badges: [],
   },
@@ -157,18 +167,20 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Plates",
     name: "Carne Asada Plate",
     description: "Chargrilled marinated skirt steak with chimol (Honduran pico de gallo), rice, beans, and warm tortillas.",
-    image: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&h=400&fit=crop&q=80",
+    // Grilled steak on wooden board with chimichurri and salad (verified: pexels 1251208)
+    image: "https://images.pexels.com/photos/1251208/pexels-photo-1251208.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🥩",
     badges: ["New"],
     spicy: true,
   },
-  // SIDES
+  // ── SIDES ─────────────────────────────────────────
   {
     id: 14,
     category: "Sides",
     name: "Arroz con Frijoles",
     description: "Honduran-style white rice paired with silky slow-cooked refried black beans.",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&h=400&fit=crop&q=80",
+    // Black beans and rice dish (verified: unsplash 1627906327792)
+    image: "https://images.unsplash.com/photo-1627906327792-4ede6149189f?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🍚",
     badges: [],
     vegetarian: true,
@@ -178,7 +190,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Sides",
     name: "Maduros",
     description: "Sweet caramelized ripe plantains — soft, sticky, golden, and irresistible.",
-    image: "https://images.unsplash.com/photo-1605333396915-47ed6b68a00e?w=600&h=400&fit=crop&q=80",
+    // Caramelized sweet plantains with fork (verified: unsplash 1563336522)
+    image: "https://images.unsplash.com/photo-1563336522-c3bd728d3b45?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🍌",
     badges: ["Popular"],
     vegetarian: true,
@@ -188,18 +201,20 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Sides",
     name: "Elotes Locos",
     description: "Street-style corn smothered in crema, queso cotija, chile powder, and fresh lime juice.",
-    image: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=600&h=400&fit=crop&q=80",
+    // Elote with queso, chile powder and lime (verified: pexels 6133872)
+    image: "https://images.pexels.com/photos/6133872/pexels-photo-6133872.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🌽",
     badges: ["New"],
     spicy: true,
   },
-  // DRINKS
+  // ── DRINKS ────────────────────────────────────────
   {
     id: 17,
     category: "Drinks",
     name: "Agua de Jamaica",
     description: "Ice-cold hibiscus water, lightly sweetened and deeply refreshing. A staple of Honduran street food.",
-    image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&h=400&fit=crop&q=80",
+    // Pink/red agua fresca in glass dispenser (verified: pexels 5804024)
+    image: "https://images.pexels.com/photos/5804024/pexels-photo-5804024.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🥤",
     badges: ["Popular"],
     vegetarian: true,
@@ -209,7 +224,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Drinks",
     name: "Horchata",
     description: "Creamy rice water with cinnamon and vanilla — sweet, smooth, and made fresh.",
-    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&h=400&fit=crop&q=80",
+    // Creamy white drink with star anise (verified: pexels 5946635)
+    image: "https://images.pexels.com/photos/5946635/pexels-photo-5946635.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     fallbackEmoji: "🥛",
     badges: [],
     vegetarian: true,
@@ -219,6 +235,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "Drinks",
     name: "Limonada Natural",
     description: "Fresh-squeezed lemonade with a pinch of salt — order it with a tajín rim for the full street food experience.",
+    // Fresh lemonade in glass (unsplash 1513558161293)
     image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600&h=400&fit=crop&q=80",
     fallbackEmoji: "🍋",
     badges: [],

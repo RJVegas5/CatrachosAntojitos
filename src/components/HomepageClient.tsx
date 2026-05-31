@@ -53,12 +53,6 @@ export default function HomepageClient() {
       ══════════════════════════════════════════ */}
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden bg-black">
 
-        {/* background glows — subtle, no brown */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[70vw] h-[70vw] rounded-full
-            bg-[radial-gradient(ellipse_at_center,_rgba(212,137,26,0.08)_0%,_transparent_70%)]" />
-        </div>
-
         {/* bokeh particles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {PARTICLES.map((p) => (
@@ -71,7 +65,7 @@ export default function HomepageClient() {
           ))}
         </div>
 
-        {/* Truck image — full bleed, no filter */}
+        {/* Truck image — zero overlays, raw image */}
         <motion.div style={{ y: truckY }} className="absolute inset-0 pointer-events-none">
           <motion.div className="relative w-full h-full"
             initial={{ scale: 1.06 }} animate={{ scale: 1 }}
@@ -82,24 +76,14 @@ export default function HomepageClient() {
               fill
               priority
               sizes="100vw"
-              // Mobile: center on the truck artwork; Desktop: show left of image
               className="object-cover [object-position:62%_center] lg:[object-position:left_center]"
             />
           </motion.div>
-          {/* Minimal scrim ONLY on desktop left edge for text readability — no brown, no full coverage */}
-          <div className="hidden lg:block absolute inset-y-0 left-0 w-[48%]"
-            style={{ background: "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0) 100%)" }} />
-          {/* Mobile: bottom scrim so CTA buttons are readable */}
-          <div className="lg:hidden absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.8) 100%)" }} />
-          {/* Bottom edge fade into next section */}
-          <div className="absolute bottom-0 left-0 right-0 h-16"
-            style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
         </motion.div>
 
-        {/* Content */}
+        {/* Content — self-contained dark panel, image behind is untouched */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24">
-          <div className="max-w-[580px]">
+          <div className="max-w-[560px] lg:bg-black/0 bg-black/50 lg:backdrop-blur-none backdrop-blur-sm rounded-3xl lg:rounded-none p-6 lg:p-0">
 
             {/* badge */}
             <motion.div initial={{ opacity:0, y:-12 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}

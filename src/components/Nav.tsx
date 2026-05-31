@@ -38,13 +38,17 @@ export default function Nav() {
 
         {/* Logo */}
         <Link href="/" className="shrink-0 group">
-          <div className="relative h-12 w-36 group-hover:scale-105 transition-transform drop-shadow-lg">
+          <div
+            className="relative h-11 w-32 bg-white rounded-xl px-1 py-0.5
+              group-hover:scale-105 transition-transform"
+            style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.4)" }}
+          >
             <Image
               src="/catrachos-logo.png"
               alt="Catrachos Antojitos — Honduran Street Food Las Vegas"
               fill
-              className="object-contain object-left"
-              sizes="144px"
+              className="object-contain p-0.5"
+              sizes="128px"
               priority
             />
           </div>

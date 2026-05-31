@@ -71,20 +71,30 @@ export default function HomepageClient() {
           ))}
         </div>
 
-        {/* Truck image — right side */}
-        <motion.div style={{ y: truckY }} className="absolute inset-y-0 right-0 w-full lg:w-[62%] pointer-events-none">
+        {/* Truck image — full bleed, no filter */}
+        <motion.div style={{ y: truckY }} className="absolute inset-0 pointer-events-none">
           <motion.div className="relative w-full h-full"
             initial={{ scale: 1.06 }} animate={{ scale: 1 }}
             transition={{ duration: 9, ease: "easeOut" }}>
-            <Image src="/food-truck.png" alt="Catrachos Antojitos food truck — coming soon to Las Vegas"
-              fill className="object-cover object-left" priority sizes="(max-width:1024px) 100vw,62vw" />
+            <Image
+              src="/food-truck.png"
+              alt="Catrachos Antojitos food truck — coming soon to Las Vegas"
+              fill
+              priority
+              sizes="100vw"
+              // Mobile: center on the truck artwork; Desktop: show left of image
+              className="object-cover [object-position:62%_center] lg:[object-position:left_center]"
+            />
           </motion.div>
-          {/* Left gradient — pure black, fades to fully transparent so truck pops */}
-          <div className="absolute inset-0"
-            style={{ background: "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0.1) 52%, rgba(0,0,0,0) 68%)" }} />
-          {/* Bottom fade — pure black */}
-          <div className="absolute bottom-0 left-0 right-0 h-28"
-            style={{ background: "linear-gradient(to top, rgba(0,0,0,0.45), transparent)" }} />
+          {/* Minimal scrim ONLY on desktop left edge for text readability — no brown, no full coverage */}
+          <div className="hidden lg:block absolute inset-y-0 left-0 w-[48%]"
+            style={{ background: "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0) 100%)" }} />
+          {/* Mobile: bottom scrim so CTA buttons are readable */}
+          <div className="lg:hidden absolute inset-0"
+            style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.8) 100%)" }} />
+          {/* Bottom edge fade into next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-16"
+            style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
         </motion.div>
 
         {/* Content */}
@@ -104,13 +114,17 @@ export default function HomepageClient() {
             {/* headline */}
             <motion.div variants={stagger} initial="hidden" animate="show" className="mb-5">
               <motion.h1 variants={fadeSlide} className="font-display text-[#F4E4C1] leading-none mb-1"
-                style={{ fontSize:"clamp(3.2rem,8vw,5.5rem)" }}>LAS VEGAS'</motion.h1>
+                style={{ fontSize:"clamp(3.2rem,8vw,5.5rem)", textShadow:"0 2px 20px rgba(0,0,0,0.8)" }}>
+                LAS VEGAS'
+              </motion.h1>
               <motion.h1 variants={fadeSlide} className="font-display leading-none mb-1"
-                style={{ fontSize:"clamp(3.2rem,8vw,5.5rem)" }}>
+                style={{ fontSize:"clamp(3.2rem,8vw,5.5rem)", textShadow:"0 2px 20px rgba(0,0,0,0.8)" }}>
                 <span className="gradient-gold">HONDURAN</span>
               </motion.h1>
-              <motion.h1 variants={fadeSlide} className="font-display text-[#F4E4C1]/70 leading-none"
-                style={{ fontSize:"clamp(2rem,5vw,3.5rem)" }}>FOOD TRUCK IS COMING</motion.h1>
+              <motion.h1 variants={fadeSlide} className="font-display text-[#F4E4C1]/90 leading-none"
+                style={{ fontSize:"clamp(2rem,5vw,3.5rem)", textShadow:"0 2px 16px rgba(0,0,0,0.9)" }}>
+                FOOD TRUCK IS COMING
+              </motion.h1>
             </motion.div>
 
             <motion.p initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.45, duration:0.6 }}

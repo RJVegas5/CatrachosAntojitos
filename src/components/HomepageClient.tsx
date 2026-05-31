@@ -81,8 +81,10 @@ export default function HomepageClient() {
             <Image src="/food-truck.png" alt="Catrachos Antojitos food truck — coming soon to Las Vegas"
               fill className="object-cover object-left" priority sizes="(max-width:1024px) 100vw,62vw" />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#100904] via-[#100904]/75 lg:via-[#100904]/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#100904]/60 via-transparent to-[#100904]/30" />
+          {/* Left gradient only — keeps text readable, lets truck shine */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#100904] via-[#100904]/70 lg:via-[#100904]/20 lg:to-transparent to-[#100904]/10" />
+          {/* Subtle bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#100904]/50 to-transparent" />
         </motion.div>
 
         {/* Content */}

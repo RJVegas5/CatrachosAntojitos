@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 import { InstagramIcon, TikTokIcon, FacebookIcon } from "./SocialIcons";
 import { BRAND } from "@/lib/data";
@@ -33,13 +34,11 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full bg-[#8B1A1A] flex items-center justify-center">
-                <span className="font-display text-[#F0A830] text-lg">CA</span>
-              </div>
-              <div>
-                <span className="block font-display text-[#F4E4C1] text-base tracking-wide">CATRACHOS</span>
-                <span className="block text-[#D4891A] text-[9px] tracking-[0.3em] uppercase">Antojitos · Las Vegas</span>
+            <div className="mb-5">
+              <div className="inline-block bg-white rounded-2xl px-3 py-1.5 shadow-lg">
+                <div className="relative h-10 w-32">
+                  <Image src="/catrachos-logo.png" alt="Catrachos Antojitos" fill className="object-contain" sizes="128px" />
+                </div>
               </div>
             </div>
             <p className="text-[#F4E4C1]/40 text-xs leading-relaxed mb-5 max-w-[220px]">

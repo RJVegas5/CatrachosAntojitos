@@ -37,21 +37,22 @@ export default function Nav() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="relative w-10 h-10 group-hover:scale-105 transition-transform">
-            <Image
-              src="/logo-parrot.png"
-              alt="Catrachos Antojitos"
-              fill
-              className="object-contain drop-shadow-lg"
-              sizes="40px"
-            />
-          </div>
-          <div className="leading-none">
-            <span className="block font-display text-[#F4E4C1] text-lg tracking-[0.12em]">CATRACHOS</span>
-            <span className="block text-[#D4891A] text-[9px] tracking-[0.35em] uppercase font-medium">
-              Antojitos · Las Vegas
-            </span>
+        <Link href="/" className="shrink-0 group">
+          <div
+            className="relative bg-white rounded-2xl px-3 py-1 shadow-lg
+              group-hover:scale-105 transition-transform"
+            style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
+          >
+            <div className="relative h-10 w-32">
+              <Image
+                src="/catrachos-logo.png"
+                alt="Catrachos Antojitos — Honduran Street Food Las Vegas"
+                fill
+                className="object-contain"
+                sizes="128px"
+                priority
+              />
+            </div>
           </div>
         </Link>
 

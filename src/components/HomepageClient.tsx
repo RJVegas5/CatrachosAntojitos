@@ -112,7 +112,8 @@ export default function HomepageClient() {
             </motion.div>
 
             <motion.p initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.45, duration:0.6 }}
-              className="text-[#F4E4C1]/60 text-base leading-relaxed mb-7 max-w-[440px]">
+              className="text-white text-base leading-relaxed mb-7 max-w-[440px] font-medium"
+              style={{ textShadow: "0 1px 12px rgba(0,0,0,0.95), 0 2px 24px rgba(0,0,0,0.8)" }}>
               Authentic Honduran street food made from family recipes — giant baleadas, crispy tajadas, golden pastelitos, and more. Get on the VIP list for exclusive launch-day access.
             </motion.p>
 
@@ -126,9 +127,9 @@ export default function HomepageClient() {
                 { icon:"🔔", text:"VIP Early Access" },
               ].map((p) => (
                 <div key={p.text} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full
-                  bg-[#1C1008] border border-[#F4E4C1]/8">
+                  bg-black/65 border border-white/20 backdrop-blur-sm">
                   <span className="text-xs">{p.icon}</span>
-                  <span className="text-[#F4E4C1]/60 text-xs font-medium">{p.text}</span>
+                  <span className="text-white text-xs font-semibold">{p.text}</span>
                 </div>
               ))}
             </motion.div>

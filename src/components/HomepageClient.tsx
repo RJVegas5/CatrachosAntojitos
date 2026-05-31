@@ -51,14 +51,12 @@ export default function HomepageClient() {
       {/* ══════════════════════════════════════════
           HERO — COMING SOON VERSION
       ══════════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden bg-[#100904]">
+      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden bg-black">
 
-        {/* background glows */}
+        {/* background glows — subtle, no brown */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[70vw] h-[70vw] rounded-full
-            bg-[radial-gradient(ellipse_at_center,_rgba(212,137,26,0.12)_0%,_transparent_70%)]" />
-          <div className="absolute -top-20 right-1/4 w-[40vw] h-[40vw] rounded-full
-            bg-[radial-gradient(ellipse_at_center,_rgba(139,26,26,0.15)_0%,_transparent_70%)]" />
+            bg-[radial-gradient(ellipse_at_center,_rgba(212,137,26,0.08)_0%,_transparent_70%)]" />
         </div>
 
         {/* bokeh particles */}
@@ -81,10 +79,12 @@ export default function HomepageClient() {
             <Image src="/food-truck.png" alt="Catrachos Antojitos food truck — coming soon to Las Vegas"
               fill className="object-cover object-left" priority sizes="(max-width:1024px) 100vw,62vw" />
           </motion.div>
-          {/* Left gradient only — keeps text readable, lets truck shine */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#100904] via-[#100904]/70 lg:via-[#100904]/20 lg:to-transparent to-[#100904]/10" />
-          {/* Subtle bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#100904]/50 to-transparent" />
+          {/* Left gradient — pure black, fades to fully transparent so truck pops */}
+          <div className="absolute inset-0"
+            style={{ background: "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0.1) 52%, rgba(0,0,0,0) 68%)" }} />
+          {/* Bottom fade — pure black */}
+          <div className="absolute bottom-0 left-0 right-0 h-28"
+            style={{ background: "linear-gradient(to top, rgba(0,0,0,0.45), transparent)" }} />
         </motion.div>
 
         {/* Content */}

@@ -34,12 +34,8 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <div className="mb-5">
-              <div className="inline-block bg-white rounded-2xl px-3 py-1.5 shadow-lg">
-                <div className="relative h-10 w-32">
-                  <Image src="/catrachos-logo.png" alt="Catrachos Antojitos" fill className="object-contain" sizes="128px" />
-                </div>
-              </div>
+            <div className="relative h-14 w-44 mb-5">
+              <Image src="/catrachos-logo.png" alt="Catrachos Antojitos" fill className="object-contain object-left drop-shadow-lg" sizes="176px" />
             </div>
             <p className="text-[#F4E4C1]/40 text-xs leading-relaxed mb-5 max-w-[220px]">
               Authentic Honduran street food bringing the flavors of home to Las Vegas since day one.

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MobileStickyCTA from "@/components/MobileStickyCTA";
+import FloatingCTA from "@/components/FloatingCTA";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
@@ -123,6 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <MobileStickyCTA />
+        <FloatingCTA />
       </body>
     </html>
   );

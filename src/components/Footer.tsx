@@ -11,14 +11,14 @@ export default function Footer() {
       <div className="bg-[#8B1A1A] py-10 texture-grain">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
           <div>
-            <p className="font-display text-[#F4E4C1] text-3xl md:text-4xl leading-none">HUNGRY? FIND THE TRUCK.</p>
-            <p className="text-[#F4E4C1]/55 text-sm mt-1">Open 7 days a week across Las Vegas</p>
+            <p className="font-display text-[#F4E4C1] text-3xl md:text-4xl leading-none">GRAND OPENING COMING SOON.</p>
+            <p className="text-[#F4E4C1]/55 text-sm mt-1">Las Vegas · Henderson · Summerlin · North Las Vegas</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="/locations"
+            <a href="/#vip-waitlist"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#F4E4C1] text-[#1C1008] font-bold text-sm hover:bg-[#F0A830] transition-colors">
-              Find the Truck <ArrowRight className="w-4 h-4" />
-            </Link>
+              Get Notified <ArrowRight className="w-4 h-4" />
+            </a>
             <Link href="/catering"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#F4E4C1]/30 text-[#F4E4C1] font-bold text-sm hover:border-[#F4E4C1]/60 transition-colors">
               Book Catering
@@ -77,21 +77,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Order */}
+          {/* Coming Soon */}
           <div>
-            <h3 className="text-[#F4E4C1]/40 font-bold text-[10px] tracking-[0.3em] uppercase mb-4">Order Online</h3>
+            <h3 className="text-[#F4E4C1]/40 font-bold text-[10px] tracking-[0.3em] uppercase mb-4">Coming Soon</h3>
             <ul className="space-y-3">
               <li>
-                <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#F4E4C1]/55 hover:text-[#D4891A] text-sm transition-colors">
-                  <span className="w-2 h-2 rounded-full bg-[#06C167] shrink-0" />Order on Uber Eats
+                <a href="/#vip-waitlist"
+                  className="flex items-center gap-2 text-[#D4891A] hover:text-[#F0A830] text-sm font-semibold transition-colors">
+                  🔔 Join the VIP Waitlist
                 </a>
               </li>
-              <li>
-                <a href={BRAND.doorDash} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#F4E4C1]/55 hover:text-[#D4891A] text-sm transition-colors">
-                  <span className="w-2 h-2 rounded-full bg-[#FF3008] shrink-0" />Order on DoorDash
-                </a>
+              <li className="text-[#F4E4C1]/35 text-xs leading-relaxed">
+                Grand opening Fall 2026. Order online and delivery coming soon.
               </li>
             </ul>
           </div>

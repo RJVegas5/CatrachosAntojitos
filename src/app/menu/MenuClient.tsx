@@ -2,11 +2,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ShoppingBag, Flame, Leaf } from "lucide-react";
+import { Bell, Flame, Leaf } from "lucide-react";
 import { MENU_CATEGORIES, MENU_ITEMS } from "@/lib/data";
 import MarqueeBanner from "@/components/MarqueeBanner";
 import ImageWithFallback from "@/components/ImageWithFallback";
-import { BRAND } from "@/lib/data";
 
 const BADGE_STYLE: Record<string, string> = {
   "Best Seller": "bg-[#D4891A] text-[#1C1008]",
@@ -46,14 +45,14 @@ export default function MenuClient() {
               Everything made fresh. Every order made with love. The flavors of Honduras — right here in Las Vegas.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
+              <a href="/#vip-waitlist"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#D4891A] text-[#1C1008] font-bold text-sm tracking-wide hover:bg-[#F0A830] transition-colors">
-                <ShoppingBag className="w-4 h-4" />Order on Uber Eats
+                <Bell className="w-4 h-4" />Join VIP Waitlist
               </a>
-              <a href={BRAND.doorDash} target="_blank" rel="noopener noreferrer"
+              <Link href="/catering"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#8B1A1A] text-[#F4E4C1] font-bold text-sm tracking-wide hover:bg-[#B52020] transition-colors">
-                <ShoppingBag className="w-4 h-4" />Order on DoorDash
-              </a>
+                Book Catering
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -149,12 +148,10 @@ export default function MenuClient() {
                     <h3 className="text-[#F4E4C1] font-bold text-sm mb-2 leading-snug">{item.name}</h3>
                     <p className="text-[#F4E4C1]/45 text-xs leading-relaxed flex-1 line-clamp-3">{item.description}</p>
                     <a
-                      href={BRAND.uberEats}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#vip-waitlist"
                       className="mt-4 w-full py-2.5 rounded-xl bg-[#D4891A]/12 hover:bg-[#D4891A] text-[#D4891A] hover:text-[#1C1008] text-xs font-bold text-center transition-all border border-[#D4891A]/25 hover:border-transparent"
                     >
-                      Add to Order ↗
+                      Coming Soon — Join Waitlist
                     </a>
                   </div>
                 </motion.div>
@@ -180,12 +177,19 @@ export default function MenuClient() {
       {/* Catering CTA */}
       <section className="bg-[#8B1A1A] py-16 texture-grain">
         <div className="max-w-xl mx-auto px-4 text-center">
-          <h2 className="font-display text-[#F4E4C1] text-4xl md:text-5xl mb-4">WANT IT ALL AT YOUR EVENT?</h2>
-          <p className="text-[#F4E4C1]/65 text-base mb-7">We bring the full Catrachos Antojitos truck to your venue.</p>
-          <Link href="/catering"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#D4891A] text-[#1C1008] font-bold text-sm hover:bg-[#F0A830] transition-colors">
-            Book Catering Now
-          </Link>
+          <p className="text-[#F0A830] text-xs font-bold uppercase tracking-widest mb-3">Now Accepting Inquiries</p>
+          <h2 className="font-display text-[#F4E4C1] text-4xl md:text-5xl mb-4">WANT THIS AT YOUR EVENT?</h2>
+          <p className="text-[#F4E4C1]/65 text-base mb-7">We're booking catering for 2026 events now — before we even open.</p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/catering"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#D4891A] text-[#1C1008] font-bold text-sm hover:bg-[#F0A830] transition-colors">
+              Book Catering Now
+            </Link>
+            <a href="/#vip-waitlist"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border-2 border-[#F4E4C1]/25 text-[#F4E4C1] font-bold text-sm hover:border-[#F4E4C1]/50 transition-colors">
+              Join VIP Waitlist
+            </a>
+          </div>
         </div>
       </section>
     </div>

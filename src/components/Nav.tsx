@@ -78,9 +78,9 @@ export default function Nav() {
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
-            className="px-4 py-2 text-sm font-bold text-[#F4E4C1]/60 hover:text-[#F0A830] transition-colors">
-            Order ↗
+          <a href="/#vip-waitlist"
+            className="px-4 py-2 text-sm font-bold text-[#D4891A] hover:text-[#F0A830] transition-colors">
+            🔔 Get Notified
           </a>
           <Link href="/catering"
             className="px-5 py-2.5 rounded-lg bg-[#8B1A1A] text-[#F4E4C1] text-sm font-bold
@@ -115,10 +115,9 @@ export default function Nav() {
                 </Link>
               ))}
               <div className="pt-3 flex gap-2">
-                <a href={BRAND.uberEats} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 py-3 rounded-xl bg-[#2A1A0E] border border-[#F4E4C1]/10
-                    text-[#F4E4C1] text-sm font-bold text-center">
-                  Order Online
+                <a href="/#vip-waitlist"
+                  className="flex-1 py-3 rounded-xl bg-[#D4891A] text-[#1C1008] text-sm font-bold text-center">
+                  🔔 Get Notified
                 </a>
                 <Link href="/catering"
                   className="flex-1 py-3 rounded-xl bg-[#8B1A1A] text-[#F4E4C1] text-sm font-bold text-center">
